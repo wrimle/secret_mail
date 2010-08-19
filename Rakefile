@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "secret_mail"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Maintan a database of secret mail adresses.}
+    gem.description = %Q{The secret mail address is mapped to a sender address and a forwarding address or action}
     gem.email = "rune@epubify.com"
     gem.homepage = "http://github.com/wrimle/secret_mail"
     gem.authors = ["Rune Myrland"]

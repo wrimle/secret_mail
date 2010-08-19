@@ -1,6 +1,13 @@
 = secret_mail
 
-Description goes here.
+**Still under heavy developmnet**
+
+Maintains a table of secret mail addresses, with a crypted version of the address
+which may send to it, and an action which is to performed on the mails. The actions
+are handled in an controller class which is meant to be overridden and extended
+by applications.
+
+Typical usage will be posting to blogs via an email interface.
 
 == Note on Patches/Pull Requests
  
