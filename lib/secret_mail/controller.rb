@@ -8,9 +8,11 @@ end
 module SecretMail
   class Controller
     def self.process message, &block
-      record = MailAction.find_valid(message.to, message.from)
-      if record
-        Controller.new record, message, &block
+      message.to.each do |to|
+        record = MailAction.find_valid(to, message.from[0])
+        if record
+          Controller.new record, message, &block
+        end
       end
     end
 
