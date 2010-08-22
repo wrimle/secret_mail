@@ -7,10 +7,10 @@ end
 
 module SecretMail
   class Controller
-    def self.process message
+    def self.process message, &block
       record = MailAction.find_valid(message.to, message.from)
       if record
-        Controller.new record, message
+        Controller.new record, message, &block
       end
     end
 
@@ -30,15 +30,22 @@ module SecretMail
 
 
     private
-    def initialize record, message
+    def initialize record, message, &block
       @record = record
       @message = message
 
       action = record.action
       if respond_to?(action)
         send(action.to_s)
+        if(@created && block_given?)
+          yield :created, @created, message
+        end
       else
-        raise UnkownAction, "Action: #{action} not implemented in the controller"
+        if block_given?
+          yield action.to_sym, record, message
+        else
+          raise UnkownAction, "Action: #{action} not implemented in the controller"
+        end
       end
     end
   end
